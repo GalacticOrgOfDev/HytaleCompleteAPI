@@ -10,7 +10,7 @@ Since you are reading this, I suppose you are looking for the inside details on 
 
 We will keep this **Read Me** simple. navigate to [INDEX.md](INDEX.md) or go to the gitbook I've created using the gitbook link below
 
-[Main Page](https://galactic-organization-of-develop.gitbook.io/paynshytaleapi/)
+[Main Page](INDEX.md)
 
 <figure><img src=".gitbook/assets/Hytale Logo.png" alt="" width="375"><figcaption></figcaption></figure>
 
