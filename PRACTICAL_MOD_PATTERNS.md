@@ -74,10 +74,10 @@ private void onBlockBreak(BreakBlockEvent event) {
         tool.getItemId()
     ));
     
-    // Example: Cancel break on diamond ore
-    if (blockType.getName().contains("diamond")) {
+    // Example: Cancel break on cobalt ore
+    if (blockType.getName().contains("Cobalt")) {
         event.setTargetBlock(new Vector3i(0, -1, 0)); // Invalid position = cancel
-        logger.info("Diamond ore mining prevented");
+        logger.info("Cobalt ore mining prevented");
     }
 }
 ```
@@ -196,18 +196,18 @@ Managing items and containers is critical for RPG and crafting systems.
 
 ```java
 // Create item stacks
-ItemStack stone = new ItemStack("minecraft:stone", 64);
-ItemStack diamond = new ItemStack("minecraft:diamond");
+ItemStack cobaltIngot = new ItemStack("Ingredient_Bar_Cobalt", 100);
+ItemStack cyanShard = new ItemStack("Ingredient_Crystal_Cyan", 100);
 ItemStack enchantedSword = new ItemStack("hytale:iron_sword", 1);
 
 HytaleLogger logger = HytaleLogger.forEnclosingClass();
 
 // Inspect items
-if (!diamond.isEmpty()) {
-    int quantity = diamond.getQuantity();
-    String itemId = diamond.getItemId();
-    double maxDurability = diamond.getMaxDurability();
-    double currentDurability = diamond.getDurability();
+if (!cobaltIngot.isEmpty()) {
+    int quantity = cobaltIngot.getQuantity();
+    String itemId = cobaltIngot.getItemId();
+    double maxDurability = cobaltIngot.getMaxDurability();
+    double currentDurability = cobaltIngot.getDurability();
     
     logger.info(String.format(
         "Item: %s, Qty: %d, Durability: %.1f/%.1f",
@@ -216,23 +216,23 @@ if (!diamond.isEmpty()) {
 }
 
 // Check stackability
-if (stone.isStackableWith(new ItemStack("minecraft:stone", 32))) {
+if (cyanShard.isStackableWith(new ItemStack("hytale:Ingredient_Crystal_Cyan", 100))) {
     logger.info("These stacks can be combined");
 }
 
 // Immutable operations (return new copies)
-ItemStack halfStack = stone.withQuantity(32);
+ItemStack halfStack = cyanShard.withQuantity(50);
 ItemStack damagedSword = enchantedSword.withDurability(
     enchantedSword.getMaxDurability() * 0.5
 );
 ItemStack enchanted = enchantedSword
-    .withMetadata("enchantment", new BsonString("unbreaking"))
+    .withMetadata("enchantment", new BsonString("wind"))
     .withMetadata("enchantment_level", new BsonInt32(3));
 
 // Check enchantments
-if (enchanted.hasEnchantment("unbreaking")) {
-    int level = enchanted.getEnchantmentLevel("unbreaking");
-    logger.info("Unbreaking level: " + level);
+if (enchanted.hasEnchantment("wind")) {
+    int level = enchanted.getEnchantmentLevel("wind");
+    logger.info("wind level: " + level);
 }
 
 // Damage handling
@@ -470,7 +470,7 @@ public void spawnRewardItem(BreakBlockEvent event) {
     HytaleLogger logger = HytaleLogger.forEnclosingClass();
     
     // Create item to drop
-    ItemStack reward = new ItemStack("hytale:diamond", 1);
+    ItemStack reward = new ItemStack("hytale:Emerald", 1);
     
     // Position at block center plus offset
     Vector3d spawnPos = new Vector3d(
@@ -1424,7 +1424,7 @@ public class CraftingSystemPlugin extends JavaPlugin {
         // Recipe: 3 stone -> 1 brick
         CraftingRecipe stoneBrick = new CraftingRecipe(
             "stone_brick",
-            new ItemStack("minecraft:stone", 3),
+            new ItemStack("hytale:stone", 3),
             new ItemStack("hytale:brick", 1)
         );
         recipeRegistry.put("stone_brick", stoneBrick);
@@ -1523,3 +1523,4 @@ public class CraftingSystemPlugin extends JavaPlugin {
 ---
 
 **Note:** This guide extracts patterns from the Hytale 2026 API. Implementation details may vary based on actual plugin context. Always check official documentation for the most current API signatures.
+
