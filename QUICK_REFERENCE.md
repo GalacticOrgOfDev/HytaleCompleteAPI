@@ -61,19 +61,19 @@ getEventRegistry().register(PlaceBlockEvent.class, event -> {
 ### Create an ItemStack
 
 ```java
-ItemStack stone = new ItemStack("minecraft:stone", 64);
-ItemStack diamond = new ItemStack("minecraft:diamond", 1);
+ItemStack cobaltIngot = new ItemStack("hytale:Ingredient_Bar_Cobalt", 40);
+ItemStack cyanShard = new ItemStack("hytale:Ingredient_Crystal_Cyan", 100);
 
 // Immutable operations
-ItemStack halfStack = stone.withQuantity(32);
-ItemStack enchanted = diamond.withMetadata("enchant", value);
+ItemStack halfStack = cobaltIngot.withQuantity(32);
+ItemStack enchanted = cyanShard.withMetadata("Enchant", value);
 ```
 
 ### Add Item to Inventory
 
 ```java
 ItemContainer inventory = new ItemContainer();
-ItemStack item = new ItemStack("hytale:apple", 64);
+ItemStack item = new ItemStack("hytale:apple", 100);
 
 ItemStackTransaction trans = inventory.addItemStack(item);
 if (trans.execute()) {
@@ -318,3 +318,4 @@ if (!sender.hasPermission("action")) {
 
 **Last Updated:** February 27, 2026
 **API Version:** Hytale 2026
+
