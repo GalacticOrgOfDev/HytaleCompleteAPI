@@ -101,8 +101,8 @@ public class ItemLoggerPlugin extends JavaPlugin {
         ));
         
         // Example: Special handling for stone
-        if (blockName.contains("stone") && tool.getItemId().contains("diamond")) {
-            logger.info("You used a diamond tool on stone!");
+        if (blockName.contains("Cobalt") && tool.getItemId().contains("Adamantite")) {
+            logger.info("You used an Adamantite tool on Cobalt!");
         }
     }
     
@@ -117,14 +117,14 @@ public class ItemLoggerPlugin extends JavaPlugin {
 
 1. Every block break logs: block number, type, position, tool, and durability
 2. Tracks total blocks broken across session
-3. Detects special combinations (diamond tool on stone)
+3. Detects special combinations (Adamantite tool on Cobalt)
 
 **Output example:**
 
 ```example
-[Block #1] Broke minecraft:stone at [100,64,200] with hytale:iron_pickaxe (Durability: 128.0)
-[Block #5] Broke minecraft:stone at [105,64,205] with hytale:diamond_pickaxe (Durability: 256.0)
-You used a diamond tool on stone!
+[Block #1] Broke Hytale:cobalt_ore at [100,64,200] with hytale:iron_pickaxe (Durability: 128.0)
+[Block #5] Broke hytale:cobalt_ore at [105,64,205] with hytale:adamantite_pickaxe (Durability: 256.0)
+You used an Adamantite tool on Cobalt!
 ```
 
 ---
@@ -160,11 +160,11 @@ public class InventoryInspectorPlugin extends JavaPlugin {
         // Add items
         ItemStack apples = new ItemStack("hytale:apple", 64);
         ItemStack sticks = new ItemStack("hytale:stick", 32);
-        ItemStack diamonds = new ItemStack("minecraft:diamond", 5);
+        ItemStack cobaltIngot = new ItemStack("hytale:Ingredient_Bar_Cobalt", 5);
         
         inventory.addItemStack(apples).execute();
         inventory.addItemStack(sticks).execute();
-        inventory.addItemStack(diamonds).execute();
+        inventory.addItemStack(cobaltIngot).execute();
         
         // Inspect inventory
         logger.info("Inventory contains:");
@@ -178,15 +178,15 @@ public class InventoryInspectorPlugin extends JavaPlugin {
         });
         
         // Count items
-        int diamondCount = inventory.countItemStacks(stack ->
-            stack.getItemId().contains("diamond")
+        int stickCount = inventory.countItemStacks(stack ->
+            stack.getItemId().contains("sticks")
         );
-        logger.info("Total diamonds: " + diamondCount);
+        logger.info("Total sticks: " + stickCount);
         
         // Move items
-        if (storage.canAddItemStack(diamonds)) {
+        if (storage.canAddItemStack(sticks)) {
             inventory.moveItemStackFromSlot((short)2, storage).execute();
-            logger.info("Moved diamonds to storage");
+            logger.info("Moved sticks to storage");
         }
         
         // Clear inventory
@@ -234,9 +234,9 @@ public class LimitedResourcesPlugin extends JavaPlugin {
     
     // Blocks that cannot be broken
     private static final String[] PROTECTED_BLOCKS = {
-        "bedrock",
-        "obsidian",
-        "netherite"
+        "protected_block",
+        "protected_block",
+        "protected_block"
     };
     
     @Override
@@ -521,3 +521,4 @@ After these examples, explore:
 
 **Created:** February 27, 2026
 **Framework:** Hytale Server API 2026
+
