@@ -79,25 +79,26 @@ ItemStack(String itemId, int quantity, BsonDocument) // With metadata
 
 ```java
 // Create stacks
-ItemStack stone = new ItemStack("minecraft:stone", 64);
-ItemStack diamond = new ItemStack("minecraft:diamond");
+ItemStack stone = new ItemStack("hytale:stone_cobble", 100);
+ItemStack cyanShard = new ItemStack("hytale:Ingredient_Crystal_Cyan". 20);
+ItemStack cyanCore = new ItemStack("hytale:cyanCore", 1);
 
 // Check properties
-if (!diamond.isEmpty()) {
-    int count = diamond.getQuantity();
-    String itemId = diamond.getItemId();
-    double maxDurability = diamond.getMaxDurability();
+if (!cyanShard.isEmpty()) {
+    int count = cyanShard.getQuantity();
+    String itemId = cyanShard.getItemId();
+    double maxDurability = cyanShard.getMaxDurability();
 }
 
 // Check stacking
-if (stone.isStackableWith(diamond)) {
+if (stone_cobble.isStackableWith(cyanShard)) {
     // Can be combined
 }
 
 // Modify (returns new copy)
-ItemStack modifiedStack = stone
-    .withQuantity(32)
-    .withMetadata("enchantment", new BsonString("unbreaking"));
+ItemStack modifiedStack = cyanCore
+    .withQuantity(1)
+    .withMetadata("enchantment", new BsonString("levitation"));
 ```
 
 Explanation: Creates item stacks with various quantities, inspects properties (quantity, durability, ID), tests if items can be combined, and uses immutable operations to create modified copies with different quantities and metadata.
@@ -161,7 +162,7 @@ Explanation: Creates item stacks with various quantities, inspects properties (q
 ```java
 // Create and populate
 ItemContainer container = new ItemContainer();
-ItemStack apple = new ItemStack("hytale:apple", 64);
+ItemStack apple = new ItemStack("hytale:apple", 100);
 container.addItemStack(apple);
 
 // Query
@@ -1947,7 +1948,7 @@ private void onPlayerChat(PlayerChatEvent event) {
     List<Player> recipients = event.getRecipients();
     logger.debug("Message will be sent to " + recipients.size() + " players");
 }
-```
+```    
 
 Explanation: Filters chat messages for bad words and modifies them if needed, detects and blocks spam, adds admin prefixes to special roles, and logs message recipients and filtered content.
 
@@ -3472,3 +3473,4 @@ You now have:
 **API Documentation Version:** 2026  
 **Last Updated:** February 27, 2026  
 **Total Coverage:** 40+ API classes with examples, 5 complete working mods, 1,608+ lines of comprehensive reference material
+
